@@ -53,10 +53,75 @@
 		<div id="app-8">
 			{{a}}
 		</div>
+
+		<div id="app-9" v-bind:class="color">
+			Msg:{{msg}}
+			<a v-on:click="doSometing(this)">MMMM</a>
+			<button type="button" onclick="doSometing()">sssss</button>
+			<button type="button" v-on:click="doSometing(1122)">aaaa</button>
+
+			<a v-bind:href="url">网页</a>
+		</div>
+
+		<div id="app-10">
+			<p>Original message: {{message}}</p>
+			<p>Computed reversed message :{{reverseMessage}}</p>
+			<p>Computed time :{{computedTime}}</p>
+			<p>Method time :{{methodTime()}}</p>
+			<p>firstName:{{firstName}}</p>
+			<p>lastName:{{lastName}}</p>
+			<p>fullName:{{fullName}}</p>
+			<input v-model="fullName" />
+		</div>
+
+		<!-- Class 与 Style 绑定 -->
+		<div class="static" v-bind:class="{active:isActive ,'text-danger':hasError}" id="app-11">
+			<p v-bind:class="Object"> active</p>
+			<p v-bind:class="[{ active: isActive }, hasError]">正则</p>
+			<p style="color: aquamarine;">原生颜色修改</p>
+			<p v-bind:style="styleObject">v-bind:style设置</p>
+		</div>
+
+		<!-- 条件渲染 -->
+		<div id="app-12">
+			<!-- 显示隐藏 -->
+			<h1 v-if="awesome">Vue is awesome</h1>
+			<h1 v-else>Oh on ！</h1>
+			<!-- template元素相当于一个容器 -->
+			<template v-if="awesome">
+				<h1>Tile</h1>
+				<p>Paragraph1</p>
+				<p>Paragraph2</p>
+			</template>
+			<!-- 多重选择 -->
+			<p v-if="pType==1">A</p>
+			<p v-else-if="pType==2">B</p>
+			<p v-else-if="pType==3">C</p>
+			<p v-else>D</p>
+			<!-- 复用元素 -->
+			<template v-if="loginType === 'username'">
+				<label>Username</label>
+				<input placeholder="Enter your username">
+			</template>
+			<template v-else>
+				<label>Email</label>
+				<input placeholder="Enter your email address">
+			</template>
+			<button v-on:click="changeLoginType">Toggle login type</button>
+		</div>
 	</body>
 	<!-- 引入本地vue.js -->
 	<script type="text/javascript" src="js/vue.js"> </script>
 	<script type="text/javascript" src="js/dome1.js"></script>
 	<!-- 引入cdnvue.js -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+	<style type="text/css">
+		.red {
+			color: red;
+		}
+
+		.blue {
+			color: blue;
+		}
+	</style>
 </html>

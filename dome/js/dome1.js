@@ -102,3 +102,95 @@ vm.$data.a = 3
 vm.$watch('a', function(newVal, oldVal) {
 	console.log('newVal:' + newVal + 'oldVal' + oldVal)
 })
+
+
+// 直接使用v-bind:class对class重写
+var vm = new Vue({
+	el: '#app-9',
+	data: {
+		msg: 333,
+		color: 'blue',
+		url: 'baidu.com'
+	},
+	methods: {
+		doSometing: function(e) {
+			console.log(e)
+			console.log("@@@@@@@@@@@@@")
+		}
+	}
+})
+
+function doSometing() {
+	console.log("%%%%%%%%%%%%%%%%")
+}
+
+var vm = new Vue({
+	el: '#app-10',
+	data: {
+		message: 'message',
+		firstName: 'ban',
+		lastName: 'ming'
+	},
+	// 计算属性会把值缓存起来
+	computed: {
+		reverseMessage: function() {
+			return this.message.split('').reverse().join('')
+		},
+		computedTime: function() {
+			return Date.now().toLocaleString()
+		},
+		// get 、set方法
+		fullName: {
+			get: function() {
+				return this.firstName + '-' + this.lastName
+			},
+			set: function(newVal) {
+				var names = newVal.split('-')
+				this.firstName = names[0]
+				this.lastName = names[1]
+			}
+		}
+	},
+	methods: {
+		methodTime: function() {
+			return Date.now().toLocaleString()
+		}
+	}
+})
+
+// 动态修改class中的值
+var vm = new Vue({
+	el: '#app-11',
+	data: {
+		isActive: true,
+		hasError: true,
+		// 类型对象数据
+		styleObject: {
+			color: 'red',
+			fontSize: '30px'
+		}
+	},
+	computed: {
+		classObject: function() {
+			return {
+				active: this.isActive,
+				error: this.hasError
+			}
+		}
+	}
+})
+
+// 条件渲染
+var vm = new Vue({
+	el: '#app-12',
+	data: {
+		awesome: true,
+		pType: 1,
+		loginType: 'username'
+	},
+	methods: {
+		changeLoginType: function() {
+			this.loginType = this.loginType == 'username' ? 'email' : 'username'
+		}
+	}
+})
