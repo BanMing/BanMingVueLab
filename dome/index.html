@@ -75,8 +75,8 @@
 		</div>
 
 		<!-- Class 与 Style 绑定 -->
-		<div class="static" v-bind:class="{active:isActive ,'text-danger':hasError}" id="app-11">
-			<p v-bind:class="Object"> active</p>
+		<div class="static" v-bind:class="{active:isActive ,'text-danger':!isActive}" id="app-11">
+			<p v-bind:class="classObject"> active</p>
 			<p v-bind:class="[{ active: isActive }, hasError]">正则</p>
 			<p style="color: aquamarine;">原生颜色修改</p>
 			<p v-bind:style="styleObject">v-bind:style设置</p>
@@ -109,8 +109,14 @@
 			</template>
 			<button v-on:click="changeLoginType">Toggle login type</button>
 		</div>
+		<div id="app-13">
+			<button type="button" @click="req">req</button>
+			<button type="button" @click="reqlocal">req local</button>
+		</div>
+	
 	</body>
 	<!-- 引入本地vue.js -->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" src="js/vue.js"> </script>
 	<script type="text/javascript" src="js/dome1.js"></script>
 	<!-- 引入cdnvue.js -->

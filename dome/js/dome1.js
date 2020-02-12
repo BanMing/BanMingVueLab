@@ -162,7 +162,7 @@ var vm = new Vue({
 var vm = new Vue({
 	el: '#app-11',
 	data: {
-		isActive: true,
+		isActive: false,
 		hasError: true,
 		// 类型对象数据
 		styleObject: {
@@ -191,6 +191,29 @@ var vm = new Vue({
 	methods: {
 		changeLoginType: function() {
 			this.loginType = this.loginType == 'username' ? 'email' : 'username'
+		}
+	}
+})
+
+var vm = new Vue({
+	el: '#app-13',
+	methods: {
+		req: function() {
+			console.log("@@@@@@")
+			axios.get('https://api.coindesk.com/v1/bpi/currentprice.json').then(
+				function(response) {
+					console.log(response);
+				},
+				function(error) {
+					console.log(error);
+				})
+		},
+		reqlocal: function() {
+			axios.get('json/json_dome.json').then(function(res) {
+				console.log(res)
+			}, function(error) {
+				console.log("error:"+ error)
+			})
 		}
 	}
 })
